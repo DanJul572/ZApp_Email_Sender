@@ -17,8 +17,8 @@ async function getAttachments(emailId, transaction) {
 }
 
 /**
- * Sends one row of "emailExecutions". The worker app has already replaced the merge tags, so
- * the row holds the final recipients, subject and body; the attachments are read from the
+ * Sends one row of "emailExecutions". The merge tags were replaced when the request was built,
+ * so the row holds the final recipients, subject and body; the attachments are read from the
  * template.
  *
  * The row is locked while it is sent, and only a row that is still on queue is sent, so a
@@ -40,7 +40,7 @@ async function processExecution(executionId) {
         subject: execution.subject,
         html: execution.body,
         priority: execution.priority,
-        // Extra headers from the worker app, e.g. List-Unsubscribe.
+        // Extra headers added when the request was built, e.g. List-Unsubscribe.
         headers: execution.headers || undefined,
         attachments: await getAttachments(execution.emailId, transaction),
       });

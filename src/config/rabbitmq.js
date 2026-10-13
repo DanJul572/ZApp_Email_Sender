@@ -8,9 +8,12 @@ module.exports = {
   user: process.env.RABBITMQ_USER,
   pass: process.env.RABBITMQ_PASS,
 
-  // Built from NODE_ENV like the worker app, so both meet on one name.
+  // Built from NODE_ENV like the API, so both meet on one name.
   queueName: {
-    // Worker → email sender: built emails, one message per row of "emailExecutions".
+    // API → this app: send requests and retried emails.
+    emailRequest: process.env.EMAIL_REQUEST_QUEUE_NAME || `${nodeEnv}_email_request_queue`,
+    // Built emails, one message per row of "emailExecutions". This app publishes and consumes
+    // it, so a large request is sent spread over every instance, one email at a time.
     sendEmail: process.env.EMAIL_QUEUE_NAME || `${nodeEnv}_send_email_queue`,
   },
 };

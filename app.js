@@ -4,6 +4,7 @@ const db = require('./src/models');
 const rabbitmq = require('./src/helpers/rabbitmq');
 
 const consumers = require('./src/consumers');
+const jobs = require('./src/jobs');
 
 async function start() {
   try {
@@ -14,7 +15,11 @@ async function start() {
     process.exit(1);
   }
 
+  await consumers.emailRequestConsumer.start();
   await consumers.sendEmailConsumer.start();
+
+  jobs.emailScheduler.start();
+  jobs.emailSweeper.start();
 }
 
 async function stop() {

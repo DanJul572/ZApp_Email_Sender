@@ -7,7 +7,7 @@ async function handle({ executionId }) {
   console.log(`Email execution ${executionId}: ${result.status}`);
 }
 
-/** Consumes the emails the worker app has built, one message ({ executionId }) per email. */
+/** Consumes the built emails, one message ({ executionId }) per email. */
 async function start() {
   await rabbitmq.consume(config.rabbitmq.queueName.sendEmail, handle, {
     prefetch: config.mailer.concurrency,

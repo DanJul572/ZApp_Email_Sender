@@ -2,7 +2,7 @@
   "name": "zapp-email-sender",
   "version": "1.0.0",
   "private": true,
-  "description": "Sends the emails the ZApp worker app has prepared.",
+  "description": "Builds ZApp's email send requests (manual, test and scheduled) and sends them.",
   "scripts": {
     "build": "node esbuild.config.js",
     "dev": "cross-env NODE_ENV=development node app.js",
@@ -14,6 +14,7 @@
   "dependencies": {
     "amqplib": "^1.0.3",
     "cross-env": "^10.1.0",
+    "dayjs": "^1.11.23",
     "dotenv": "^17.4.2",
     "nodemailer": "^7.0.6",
     "pg": "^8.20.0",
