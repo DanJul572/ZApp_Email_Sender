@@ -6,7 +6,7 @@ esbuild
     bundle: true,
     platform: 'node',
     outfile: 'dist/app.js',
-    target: 'node22',
+    target: 'node26',
     minify: false,
     sourcemap: true,
     external: [
