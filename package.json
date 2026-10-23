@@ -9,6 +9,9 @@
     "format": "prettier --write .",
     "check": "eslint . --max-warnings=0",
     "start": "node dist/app.js",
+    "start:dev": "cross-env NODE_ENV=development node app.js",
+    "start:stage": "cross-env NODE_ENV=stage node dist/app.js",
+    "start:prod": "cross-env NODE_ENV=production node dist/app.js",
     "test": "jest"
   },
   "dependencies": {
